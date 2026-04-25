@@ -1,6 +1,7 @@
 'use client'
 
-import React from "react"
+import React from "react";
+ 
 const TypingAnimation = ({ text }) => {
     const [displayText, setDisplayText] = React.useState("");
 

@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import TypingAnimation from "@/libs/TypingAnimation";
+import TypingAnimation from "@/lib/TypingAnimation";
 import Image from "next/image";
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { Button } from "@nextui-org/button";

@@ -1,6 +1,9 @@
-import { Inter } from "next/font/google";
+import { Inter, Geist } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { cn } from "@/lib/utils";
+// import { TooltipProvider } from "@/components/ui/tooltip";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,11 +14,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark text-foreground bg-background">
+    <html lang="id" className={cn("dark text-foreground bg-background", "font-sans", geist.variable)}>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Providers>
+        {/* <TooltipProvider> */}
           {children}
-        </Providers>
+        {/* </TooltipProvider> */}
       </body>
     </html>
   );
