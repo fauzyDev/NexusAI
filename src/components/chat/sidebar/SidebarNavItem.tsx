@@ -1,6 +1,13 @@
+import { FC } from "react";
 import { cn } from "@/lib/utils";
 
-export function SidebarNavItem({ icon, label, active = false }) {
+interface SidebarNavItemProps {
+  icon: React.ReactNode;
+  label: string;
+  active?: boolean;
+}
+
+export const SidebarNavItem: FC<SidebarNavItemProps> = ({ icon, label, active = false }) => {
   return (
     <button
       className={cn(

@@ -1,8 +1,13 @@
-import { ChatIcon, HistoryIcon, SettingsIcon } from "./icons/index";
+import { ChatIcon, HistoryIcon, SettingsIcon } from "@/components/chat/icons";
 
 export const MODELS = ["GPT-4", "Claude 3.5", "Local Llama"];
 
-export const NAV_ITEMS = [
+interface NavItem {
+  icon: React.ReactNode;
+  label: string;
+}
+
+export const NAV_ITEMS: NavItem[] = [
   { icon: <ChatIcon />, label: "Project Alpha" },
   { icon: <HistoryIcon />, label: "Market Research" },
   { icon: <SettingsIcon />, label: "Design System" },
@@ -22,15 +27,4 @@ export const CODE_SNIPPET = `const Button = ({ variant, children, ...props }) =>
   );
 };`;
 
-export const INITIAL_MESSAGES = [
-  {
-    id: 1,
-    role: "user",
-    content: "Can you show me a clean implementation of a Tailwind-styled button component in React? I want it to be reusable with different variants like primary and secondary.",
-    time: "Sent 10:24 AM",
-  },
-  {
-    id: 2,
-    role: "assistant",
-  },
-];
+export const INITIAL_MESSAGES: any[] = [];

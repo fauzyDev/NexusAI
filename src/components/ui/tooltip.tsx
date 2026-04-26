@@ -1,26 +1,33 @@
 "use client"
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
-
+import React from "react";
 import { cn } from "@/lib/utils"
 
 function TooltipProvider({
   delay = 0,
   ...props
-}) {
+}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
   return (<TooltipPrimitive.Provider data-slot="tooltip-provider" delay={delay} {...props} />);
 }
 
 function Tooltip({
   ...props
-}) {
+}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
 }
 
 function TooltipTrigger({
   ...props
-}) {
+}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
+}
+
+interface TooltipContentProps extends React.ComponentProps<typeof TooltipPrimitive.Popup> {
+  side?: "top" | "bottom" | "left" | "right";
+  sideOffset?: number;
+  align?: "start" | "center" | "end";
+  alignOffset?: number;
 }
 
 function TooltipContent({
@@ -31,7 +38,7 @@ function TooltipContent({
   alignOffset = 0,
   children,
   ...props
-}) {
+}: TooltipContentProps) {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner

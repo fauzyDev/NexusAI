@@ -1,8 +1,12 @@
 'use client'
 
-import React from "react";
+import React, { FC } from "react";
  
-const TypingAnimation = ({ text }) => {
+interface TypingAnimationProps {
+  text: string;
+}
+
+const TypingAnimation: FC<TypingAnimationProps> = ({ text }) => {
     const [displayText, setDisplayText] = React.useState("");
 
     React.useEffect(() =>{
