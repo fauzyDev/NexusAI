@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import NexusAIChat from "@/components/NexusAIChat";
+import LandingPage from "@/components/landing/LandingPage";
 
 export const metadata: Metadata = {
-  title: 'NexusAI Chat',
-  description: 'AI Chat Interface',
+  title: 'NexusAI | The Next Generation of Intelligence',
+  description: 'Experience the future of AI chat with Nexus AI. Fast, secure, and incredibly smart.',
 };
 
 export default function Page() {
-  return <NexusAIChat />;
+  return <LandingPage />;
 }
+

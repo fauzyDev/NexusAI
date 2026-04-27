@@ -28,28 +28,33 @@ const NexusAIChat: FC = () => {
     }
   }, [messages, isTyping]);
 
-  const handleSend = async (text: string) => {
-    if (text.trim() === "") return;
+  const handleSend = async (text: string, files?: File[]) => {
+    if (text.trim() === "" && (!files || files.length === 0)) return;
 
+    const userMessage = text.trim();
+    
     setMessages((prev) => [
       ...prev,
       {
         id: Date.now(),
         role: "user",
-        content: text,
+        content: userMessage || (files && files.length > 0 ? "Attached files" : ""),
         time: `Sent ${new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}`,
       },
     ]);
     setIsTyping(true);
 
     try {
+      // In a real implementation, you would upload files to a storage service
+      // and send the URLs to the API. For now, we'll just send the text.
       const response = await fetch('/api/data', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ message: userMessage }),
       });
+
 
       if (!response.ok) {
         throw new Error("Failed to fetch AI response");
@@ -115,8 +120,8 @@ const NexusAIChat: FC = () => {
 
       <main className="md:pl-64 pt-16 h-screen flex flex-col overflow-hidden transition-all duration-300">
         {messages.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-8 mt-[-10vh]">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white text-center">
+          <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-6 space-y-8 mt-[-5vh] md:mt-[-10vh]">
+            <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-center px-4">
               What can I help you with?
             </h1>
             <div className="w-full max-w-[800px]">
@@ -127,9 +132,9 @@ const NexusAIChat: FC = () => {
           <>
             <div
               ref={scrollRef}
-              className="flex-1 overflow-y-auto px-6 md:px-12 py-12"
+              className="flex-1 overflow-y-auto px-4 md:px-12 py-8 md:py-12"
             >
-              <div className="max-w-[800px] mx-auto space-y-12">
+              <div className="max-w-[800px] mx-auto space-y-8 md:space-y-12">
                 {messages.map((msg) =>
                   msg.role === "user" ? (
                     <UserMessage key={msg.id} content={msg.content} time={msg.time} />
@@ -145,6 +150,7 @@ const NexusAIChat: FC = () => {
           </>
         )}
       </main>
+
     </div>
   );
 }

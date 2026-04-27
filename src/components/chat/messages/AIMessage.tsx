@@ -10,11 +10,12 @@ export const AIMessage: FC<AIMessageProps> = ({ content }) => {
   const chips = ["How to add icons?", "Explain variant logic"];
 
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-3 md:gap-6">
       {/* AI avatar */}
-      <div className="w-10 h-10 rounded-full bg-indigo-600/20 shrink-0 flex items-center justify-center border border-indigo-500/30 self-start mt-0.5">
-        <span className="text-indigo-400"><SparkleIcon /></span>
+      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-indigo-600/20 shrink-0 flex items-center justify-center border border-indigo-500/30 self-start mt-0.5">
+        <span className="text-indigo-400 scale-75 md:scale-100"><SparkleIcon /></span>
       </div> 
+
 
       {/* Content */}
       <div className="flex-1 space-y-4 min-w-0">
